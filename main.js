@@ -3,6 +3,18 @@ const searchbtn = document.getElementById("searchbtn");
 const displaytemp = document.getElementById("displaytemp");
 const displayfahrenheit = document.getElementById("displayfahrenheit");
 const weatherin = document.getElementById("weatherin");
+const feelslike = document.getElementById("feelslike");
+const tomorrowtemp = document.getElementById("tomorrowtemp");
+const tomorrowfeels = document.getElementById("tomorrowfeels");
+const tomorrowwind = document.getElementById("tomorrowwind");
+const wind = document.getElementById("wind");
+const todaylogo = document.getElementById("todaylogo");
+const tomorrowlogo = document.getElementById("tomorrowlogo");
+const daytwologo = document.getElementById("daytwologo");
+
+const daytwotemp = document.getElementById("daytwotemp");
+const daytwofeels = document.getElementById("daytwofeels");
+const daytwowind = document.getElementById("daytwowind");
 let place;
 let placecap;
 
@@ -11,6 +23,10 @@ searchbtn.addEventListener("click", getForecast);
 
 function capitalize() {
   place = inputplace.value;
+  if (place === "") {
+    alert("Please enter a city!");
+    return;
+  }
   placecap = place.charAt(0).toUpperCase() + place.slice(1);
 }
 
@@ -22,6 +38,10 @@ async function getWeather() {
   );
   let weatherData = await response.json();
   console.log(weatherData);
+  if (weatherData.message === "city not found") {
+    alert("City not found!");
+    return;
+  }
   displaytemp.textContent =
     (weatherData.main.temp - 273.15).toFixed(0) +
     "°C " +
@@ -29,7 +49,12 @@ async function getWeather() {
     ((weatherData.main.temp * 9) / 5 - 459.67).toFixed(0) +
     "°F";
 
+  feelslike.textContent = `Feels like: ${
+    (weatherData.main.feels_like - 273.15).toFixed(0) + "°C "
+  }`;
   weatherin.textContent = `Weather in: ${placecap}`;
+  wind.textContent =
+    `Wind speed: ${(weatherData.wind.speed * 3.6).toFixed(0)}` + " km/h";
 }
 
 async function getForecast() {
@@ -39,10 +64,25 @@ async function getForecast() {
   );
   const forecastData = await response.json();
   console.log(forecastData);
-  const tomorrowmin = forecastData.list[7].main.temp_min;
-  const tomorrowfeels = forecastData.list[7].main.feels_like;
-  const tomorrowwind = (forecastData.list[7].wind.speed * 3.6).toFixed(1);
-  const daytwomin = forecastData.list[15].main.temp_min;
-  const daytwofeels = forecastData.list[15].main.feels_like;
-  const daytwowind = (forecastData.list[15].wind.speed * 3.6).toFixed(1);
+  tomorrowtemp.textContent =
+    `Temperature: ${(forecastData.list[7].main.temp - 273.15).toFixed(0)}` +
+    "°C ";
+  tomorrowfeels.textContent =
+    `Feels like: ${(forecastData.list[7].main.feels_like - 273.15).toFixed(
+      0
+    )}` + "°C";
+  tomorrowwind.textContent =
+    `Wind speed: ${(forecastData.list[7].wind.speed * 3.6).toFixed(0)}` +
+    " km/h";
+
+  daytwotemp.textContent =
+    `Temperature: ${(forecastData.list[15].main.temp - 273.15).toFixed(0)}` +
+    "°C ";
+  daytwofeels.textContent =
+    `Feels like: ${(forecastData.list[15].main.feels_like - 273.15).toFixed(
+      0
+    )}` + "°C ";
+  daytwowind.textContent =
+    `Wind speed: ${(forecastData.list[15].wind.speed * 3.6).toFixed(0)}` +
+    " km/h";
 }

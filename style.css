@@ -17,6 +17,7 @@ body {
 .mainwrap {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  text-align: center;
+  text-indent: 30%;
+  line-height: 25px;
   height: 50vh;
 }
