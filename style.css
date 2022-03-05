@@ -12,6 +12,7 @@ body {
   display: flex;
   flex-direction: column;
   font-size: min(3vw, 16px);
+  justify-content: space-between;
 }
 h2 {
   font-size: min(3vw, 20px);
@@ -24,6 +25,7 @@ h2 {
   align-items: center;
   padding: 20px;
 }
+
 input {
   height: 30px;
   width: 300px;
@@ -34,12 +36,18 @@ button {
 }
 .mainwrap {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   line-height: 40px;
   height: 40vh;
   gap: 20px;
   padding: 20px;
   text-align: center;
+  margin-bottom: 50px;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
 }
 #tempwrapper {
   border: solid 2px;
@@ -53,9 +61,4 @@ button {
 #daytwo {
   border: solid 2px;
   border-radius: 20px;
-}
-
-footer {
-  text-align: center;
-  margin-bottom: 50px;
 }
