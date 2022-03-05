@@ -3,8 +3,11 @@
   margin: 0;
 }
 body {
-  height: 100vh;
+  min-height: 100vh;
   background: linear-gradient(white, grey);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .topwrap {
   display: flex;
@@ -14,10 +17,33 @@ body {
   align-items: center;
   padding: 20px;
 }
+input {
+  height: 30px;
+  width: 300px;
+}
+button {
+  width: 150px;
+  height: 50px;
+}
 .mainwrap {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  text-indent: 30%;
-  line-height: 25px;
-  height: 50vh;
+  line-height: 40px;
+  height: 40vh;
+  border: solid 1px;
+  text-align: center;
+}
+#tempwrapper {
+  border: solid 1px;
+}
+#tomorrow {
+  border: solid 1px;
+}
+#daytwo {
+  border: solid 1px;
+}
+
+footer {
+  text-align: center;
+  margin-bottom: 50px;
 }

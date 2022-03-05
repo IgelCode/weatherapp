@@ -37,13 +37,13 @@ async function getWeather() {
     { mode: "cors" }
   );
   let weatherData = await response.json();
-  console.log(weatherData);
+
   if (weatherData.message === "city not found") {
     alert("City not found!");
     return;
   }
   displaytemp.textContent =
-    (weatherData.main.temp - 273.15).toFixed(0) +
+    `Temperature: ${(weatherData.main.temp - 273.15).toFixed(0)}` +
     "°C " +
     "/ " +
     ((weatherData.main.temp * 9) / 5 - 459.67).toFixed(0) +
@@ -52,9 +52,11 @@ async function getWeather() {
   feelslike.textContent = `Feels like: ${
     (weatherData.main.feels_like - 273.15).toFixed(0) + "°C "
   }`;
-  weatherin.textContent = `Weather in: ${placecap}`;
+
   wind.textContent =
     `Wind speed: ${(weatherData.wind.speed * 3.6).toFixed(0)}` + " km/h";
+
+  todaylogo.src = `http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`;
 }
 
 async function getForecast() {
@@ -63,7 +65,7 @@ async function getForecast() {
     { mode: "cors" }
   );
   const forecastData = await response.json();
-  console.log(forecastData);
+
   tomorrowtemp.textContent =
     `Temperature: ${(forecastData.list[7].main.temp - 273.15).toFixed(0)}` +
     "°C ";
@@ -74,6 +76,7 @@ async function getForecast() {
   tomorrowwind.textContent =
     `Wind speed: ${(forecastData.list[7].wind.speed * 3.6).toFixed(0)}` +
     " km/h";
+  tomorrowlogo.src = `http://openweathermap.org/img/wn/${forecastData.list[7].weather[0].icon}@2x.png`;
 
   daytwotemp.textContent =
     `Temperature: ${(forecastData.list[15].main.temp - 273.15).toFixed(0)}` +
@@ -85,4 +88,5 @@ async function getForecast() {
   daytwowind.textContent =
     `Wind speed: ${(forecastData.list[15].wind.speed * 3.6).toFixed(0)}` +
     " km/h";
+  daytwologo.src = `http://openweathermap.org/img/wn/${forecastData.list[15].weather[0].icon}@2x.png`;
 }
