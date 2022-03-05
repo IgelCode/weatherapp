@@ -4,10 +4,18 @@
 }
 body {
   min-height: 100vh;
-  background: linear-gradient(white, grey);
+  background: linear-gradient(
+    to bottom right,
+    rgb(245, 245, 106),
+    rgb(69, 89, 201)
+  );
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  font-size: min(3vw, 16px);
+}
+h2 {
+  font-size: min(3vw, 20px);
 }
 .topwrap {
   display: flex;
@@ -30,17 +38,22 @@ button {
   grid-template-columns: 1fr 1fr 1fr;
   line-height: 40px;
   height: 40vh;
-  border: solid 1px;
+  gap: 20px;
+  padding: 20px;
   text-align: center;
 }
 #tempwrapper {
-  border: solid 1px;
+  border: solid 2px;
+  border-radius: 20px;
 }
 #tomorrow {
-  border: solid 1px;
+  border: solid 2px;
+
+  border-radius: 20px;
 }
 #daytwo {
-  border: solid 1px;
+  border: solid 2px;
+  border-radius: 20px;
 }
 
 footer {
