@@ -43,11 +43,7 @@ async function getWeather() {
     return;
   }
   displaytemp.textContent =
-    `Temperature: ${(weatherData.main.temp - 273.15).toFixed(0)}` +
-    "°C " +
-    "/ " +
-    ((weatherData.main.temp * 9) / 5 - 459.67).toFixed(0) +
-    "°F";
+    `Temperature: ${(weatherData.main.temp - 273.15).toFixed(0)}` + "°C ";
 
   feelslike.textContent = `Feels like: ${
     (weatherData.main.feels_like - 273.15).toFixed(0) + "°C "
