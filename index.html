@@ -16,7 +16,8 @@
         Even at your own place, in case you are too lazy to look outside.</p>
 
     <label for="inputplace">Which place do you want me to look up for you?</label>
-    <input type="text" id="inputplace" placeholder="Enter a City" />
+    <input type="text" id="inputplace" placeholder="Enter a City" onkeydown = "if (event.keyCode == 13) {
+    document.getElementById('searchbtn').click()}" />
     <button id="searchbtn">Check Weather</button>
 </div>
 
